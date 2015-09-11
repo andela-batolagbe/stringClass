@@ -72,7 +72,7 @@ describe('stringClass', function() {
   it('words should return a list of words in the string', function() {
 
     var texts = 'I am happy',
-      sentence = 'a good song, make me want to dance',
+      sentence = 'a good song, make me want to dance.',
       simple = 'one; two: and three';
 
     expect(texts.words()).toBeDefined();
@@ -85,7 +85,7 @@ describe('stringClass', function() {
   it('wordCount should return the number of words in the string', function() {
 
     var texts = 'I am happy',
-      sentence = 'a good song, make me want to dance',
+      sentence = 'a good song, make me want to dance.',
       simple = 'one; two: and three';
 
     expect(texts.wordCount()).toBeDefined();
