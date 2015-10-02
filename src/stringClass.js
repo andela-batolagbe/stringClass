@@ -4,7 +4,7 @@
   //hasVowel
   String.prototype.hasVowel = function() {
 
-  	//search if string has vowel and return true or false
+    //search if string has vowel and return true or false
     if (this.search(/(a|e|i|o|u)/i) !== -1) {
       return true;
     } else {
@@ -16,15 +16,21 @@
   //toUpper
   String.prototype.toUpper = function() {
 
-    var upper = this.toUpperCase();
+    var upper = this.replace(/([a-z])/g, function makeUpper(l) {
+    var asciiVal =l.charCodeAt(0)-32;
+    return String.fromCharCode(asciiVal);
+    });
 
     return upper;
-  };
+  }
 
   //toLower
   String.prototype.toLower = function() {
 
-    var lower = this.toLowerCase();
+    var lower = this.replace(/([A-Z])/g, function makeLower(l) {
+    var asciiVal =l.charCodeAt(0)+32;
+    return String.fromCharCode(asciiVal);
+    });
 
     return lower;
   };
@@ -50,23 +56,23 @@
     }
   };
 
-  //words 
+  //words
   String.prototype.words = function() {
 
-  	//split by all non alphabets
+    //split by all non alphabets
     var wordArray = this.split(/[\s\W\d]+/g);
-    
+
     var i = 0;
-    
+
     //remove extra white spaces
-    do{
-    	if (wordArray[i] === ''){
-    		wordArray.splice(i, 1);
-    	}
-    	
-    	i+=1;
+    do {
+      if (wordArray[i] === '') {
+        wordArray.splice(i, 1);
+      }
+
+      i += 1;
     }
-    while(i < wordArray.length);
+    while (i < wordArray.length);
 
     return wordArray;
   };
@@ -84,13 +90,13 @@
   //to Currency
   Number.prototype.toCurrency = function() {
 
-  	//fix to two decimal places (currency) and convert to string
+    //fix to two decimal places (currency) and convert to string
     var inString = this.toFixed(2).toString();
 
     var len = inString.length,
       currency;
 
-      //if length is 3 or less return, else insert neccesary commas
+    //if length is 3 or less return, else insert neccesary commas
     if (len > 3) {
       currency = inString.replace(/(\d(?=(\d{3})+\.))/g, '$&,');
 
@@ -103,12 +109,12 @@
   //from Currency
   String.prototype.fromCurrency = function() {
 
-  	//remove all commas, and join
+    //remove all commas, and join
     var nums = this.split(/\s*,\s*/);
 
     var joiner = nums.join('');
 
-    //convert to digit 
+    //convert to digit
     var digit = Math.round(joiner * 100) / 100;
 
     return digit;
