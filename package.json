@@ -1,0 +1,21 @@
+{
+  "name": "stringClassExt",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jasmine-node tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andela-batolagbe/stringClass.git"
+  },
+  "author": "andela-batolagbe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andela-batolagbe/stringClass/issues"
+  },
+  "dependencies": {
+    "fs": "0.0.2",
+    "jasmine-core": "^2.3.3",
+    "jasmine-node": "^1.14.5"
+  }
+}
