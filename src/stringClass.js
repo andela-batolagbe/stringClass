@@ -5,20 +5,16 @@
   String.prototype.hasVowel = function() {
 
     //search if string has vowel and return true or false
-    if (this.search(/(a|e|i|o|u)/i) !== -1) {
-      return true;
-    } else {
-      return false;
-    }
-
+    return this.search(/(a|e|i|o|u)/i) !== -1;
   };
 
   //toUpper
   String.prototype.toUpper = function() {
 
     var upper = this.replace(/([a-z])/g, function makeUpper(l) {
-    var asciiVal =l.charCodeAt(0)-32;
-    return String.fromCharCode(asciiVal);
+      var asciiDiff = 32;
+      var asciiVal = l.charCodeAt(0) - asciiDiff;
+      return String.fromCharCode(asciiVal);
     });
 
     return upper;
@@ -28,8 +24,9 @@
   String.prototype.toLower = function() {
 
     var lower = this.replace(/([A-Z])/g, function makeLower(l) {
-    var asciiVal =l.charCodeAt(0)+32;
-    return String.fromCharCode(asciiVal);
+      var asciiDiff = 32;
+      var asciiVal = l.charCodeAt(0) + asciiDiff;
+      return String.fromCharCode(asciiVal);
     });
 
     return lower;
@@ -38,9 +35,9 @@
   //ucFirst
   String.prototype.ucFirst = function() {
 
-    var change = this[0].toUpperCase();
-
-    var upperFirst = this.replace(this[0], change);
+    var upperFirst = this.replace(/^([a-z])/, function makeFirst(f) {
+      return String.fromCharCode(f.charCodeAt(0) - 32)
+    });
 
     return upperFirst;
   };
@@ -49,11 +46,7 @@
   //is Question
   String.prototype.isQuestion = function() {
 
-    if (this.search(/\?/g) !== -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.search(/\?$/g) !== -1;
   };
 
   //words
@@ -62,17 +55,10 @@
     //split by all non alphabets
     var wordArray = this.split(/[\s\W\d]+/g);
 
-    var i = 0;
-
     //remove extra white spaces
-    do {
-      if (wordArray[i] === '') {
-        wordArray.splice(i, 1);
-      }
-
-      i += 1;
+    if (wordArray.indexOf('') !== -1) {
+      wordArray.splice(wordArray.indexOf(/\s/), 1);
     }
-    while (i < wordArray.length);
 
     return wordArray;
   };
